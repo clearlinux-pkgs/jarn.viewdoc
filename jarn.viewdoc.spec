@@ -4,7 +4,7 @@
 #
 Name     : jarn.viewdoc
 Version  : 2.3
-Release  : 8
+Release  : 9
 URL      : https://files.pythonhosted.org/packages/33/cd/e6e9ab725904adf3118d1b0be1552d298c855cf9980b733c5267c02d6fb1/jarn.viewdoc-2.3.zip
 Source0  : https://files.pythonhosted.org/packages/33/cd/e6e9ab725904adf3118d1b0be1552d298c855cf9980b733c5267c02d6fb1/jarn.viewdoc-2.3.zip
 Summary  : Python documentation viewer
@@ -28,59 +28,219 @@ BuildRequires : tox
 BuildRequires : virtualenv
 
 %description
+============
 jarn.viewdoc
-        ============
-        ------------------------------------
-        Python documentation viewer
-        ------------------------------------
-        
-        **viewdoc** is a Python package documentation viewer. It converts
-        reST-formatted text to HTML and displays it in a browser window.
-        
-        viewdoc is typically used to check a package's long description before
-        uploading it to PyPI.
-        
-        Installation
-        ============
-        
-        viewdoc works with Python 2.7 - 3.7 and all released versions of setuptools
-        and distribute.
-        
-        Use ``pip install jarn.viewdoc`` to install the ``viewdoc`` script.
-        
-        Usage
-        =====
-        
-        ``viewdoc [options] [rst-file | egg-dir]``
-        
-        Options
-        =======
-        
-        ``-s style, --style=style, or --style``
-            Select the custom style added to the HTML output.
-        
-        ``-b browser, --browser=browser``
-            Select the browser used for display. For a list of names see the
-            `webbrowser`_ module.
-        
-        ``-c config-file, --config-file=config-file``
-            Use config-file instead of the default ``~/.viewdoc``.
-        
-        ``-l, --list-styles``
-            List available styles and exit.
-        
-        ``-h, --help``
-            Print the help message and exit.
-        
-        ``-v, --version``
-            Print the version string and exit.
-        
-        ``rst-file``
-            The reST file to view.
-        
-        ``egg-dir``
-            The Python package whose long description to view.
-            Defaults to the current working directory.
+============
+------------------------------------
+Python documentation viewer
+------------------------------------
+
+**viewdoc** is a Python package documentation viewer. It converts
+reST-formatted text to HTML and displays it in a browser window.
+
+viewdoc is typically used to check a package's long description before
+uploading it to PyPI.
+
+Installation
+============
+
+viewdoc works with Python 2.7 - 3.7 and all released versions of setuptools
+and distribute.
+
+Use ``pip install jarn.viewdoc`` to install the ``viewdoc`` script.
+
+Usage
+=====
+
+``viewdoc [options] [rst-file | egg-dir]``
+
+Options
+=======
+
+``-s style, --style=style, or --style``
+    Select the custom style added to the HTML output.
+
+``-b browser, --browser=browser``
+    Select the browser used for display. For a list of names see the
+    `webbrowser`_ module.
+
+``-c config-file, --config-file=config-file``
+    Use config-file instead of the default ``~/.viewdoc``.
+
+``-l, --list-styles``
+    List available styles and exit.
+
+``-h, --help``
+    Print the help message and exit.
+
+``-v, --version``
+    Print the version string and exit.
+
+``rst-file``
+    The reST file to view.
+
+``egg-dir``
+    The Python package whose long description to view.
+    Defaults to the current working directory.
+
+.. _`webbrowser`: https://docs.python.org/3/library/webbrowser.html#webbrowser.register
+
+Configuration
+=============
+
+viewdoc reads style information from its configuration file
+``~/.viewdoc``. Edit this file to add your own styles.
+
+Built-in Styles
+---------------
+
+``plain``
+    Browser default with margins.
+
+``pypi``
+    New PyPI style with Google Fonts.
+
+``sans``
+    PyPI-like style without Google Fonts (the default).
+
+
+Known Bugs
+============
+
+If you are on macOS Sierra be aware of https://bugs.python.org/issue30392. As
+a workaround specify the browser on the command line::
+
+    $ viewdoc -b safari src/my.package
+
+or use the configuration file::
+
+    [viewdoc]
+    browser = safari
+
+Related
+=======
+
+Also see our Python package releaser `jarn.mkrelease`_.
+
+.. _`jarn.mkrelease`: https://github.com/Jarn/jarn.mkrelease
+
+
+Changelog
+=========
+
+2.3 - 2019-01-28
+----------------
+
+- Support ``python -m jarn.viewdoc``.
+  [stefan]
+
+2.2 - 2019-01-25
+----------------
+
+- Drop Python 2.6 support, add Python 3.7.
+  [stefan]
+
+- Update styles in light of new PyPI (warehouse).
+  [stefan]
+
+- Default to ``sans`` style because new PyPI uses Google Fonts.
+  [stefan]
+
+- Convert dashes to underscores in config parser optionxform.
+  [stefan]
+
+2.1 - 2017-10-06
+----------------
+
+- Add MANIFEST.in.
+  [stefan]
+
+2.0 - 2017-07-20
+----------------
+
+- Update ``pypi`` stylesheet (grey code blocks).
+  [stefan]
+
+- Automatically upgrade stylesheet information.
+  [stefan]
+
+- Add -b option to specify the browser to use.
+  [stefan]
+
+- Protect against bad or incomplete locale settings.
+  [stefan]
+
+1.8 - 2017-01-30
+----------------
+
+- Support Python 2.6 - 3.6 without 2to3.
+  [stefan]
+
+1.7 - 2014-03-22
+----------------
+
+- Update PyPI stylesheet links in the face of new python.org.
+  [stefan]
+
+- Add new ``pypi`` style and rename previous one to ``classic``.
+  [stefan]
+
+1.6 - 2013-11-21
+----------------
+
+- Support Python 3.x.
+  [stefan]
+
+1.5 - 2012-07-11
+----------------
+
+- Restore Python 2.5 compatibility.
+  [stefan]
+
+1.4 - 2011-11-25
+----------------
+
+- Warn if ``~/.viewdoc`` has errors instead of raising an exception.
+  [stefan]
+
+1.3 - 2011-10-31
+----------------
+
+- Be more careful with what we put on the PYTHONPATH.
+  [stefan]
+
+- Add ``small`` style to the default config.
+  [stefan]
+
+1.2 - 2011-07-19
+----------------
+
+- Pass the PYTHONPATH to subprocesses.
+  [stefan]
+
+- Avoid temp file when extracting the long description.
+  [stefan]
+
+- Add -l option to list available styles.
+  [stefan]
+
+- Add --*style* shortcut for -s *style*.
+  [stefan]
+
+1.1 - 2011-02-08
+----------------
+
+- Add -s option to select styles on the command line.
+  [stefan]
+
+- In ``pypi`` style, only underline reference links.
+  [stefan]
+
+1.0 - 2010-12-30
+----------------
+
+- Initial release
+  [stefan]
 
 %package bin
 Summary: bin components for the jarn.viewdoc package.
@@ -112,6 +272,7 @@ python components for the jarn.viewdoc package.
 Summary: python3 components for the jarn.viewdoc package.
 Group: Default
 Requires: python3-core
+Provides: pypi(jarn.viewdoc)
 
 %description python3
 python3 components for the jarn.viewdoc package.
@@ -126,7 +287,8 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1574291036
+export SOURCE_DATE_EPOCH=1583160694
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
