@@ -4,7 +4,7 @@
 #
 Name     : jarn.viewdoc
 Version  : 2.3
-Release  : 23
+Release  : 24
 URL      : https://files.pythonhosted.org/packages/33/cd/e6e9ab725904adf3118d1b0be1552d298c855cf9980b733c5267c02d6fb1/jarn.viewdoc-2.3.zip
 Source0  : https://files.pythonhosted.org/packages/33/cd/e6e9ab725904adf3118d1b0be1552d298c855cf9980b733c5267c02d6fb1/jarn.viewdoc-2.3.zip
 Summary  : Python documentation viewer
@@ -130,15 +130,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1603393893
+export SOURCE_DATE_EPOCH=1635743697
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
